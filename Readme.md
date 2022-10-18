@@ -4,7 +4,7 @@
 
 
 
-####creating a spring boot app that can create a Jira ticket in an Atlassian Cloud instance and shows the created ticket afterward.
+#### creating a spring boot app that can create a Jira ticket in an Atlassian Cloud instance and shows the created ticket afterward.
 
 
 * The only input parameter for the issue is the summary, no other field needs to be set
