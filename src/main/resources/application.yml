@@ -1,0 +1,8 @@
+jira:
+  secret: KPEllfkDl64WwBVBYmkH5A23
+  user-name: fawazalhosh@gmail.com
+  base-url: https://kotlinbitvoodoo.atlassian.net
+  ticket-url: /rest/api/2/issue
+  project-key: BT
+server:
+  port: 8080
