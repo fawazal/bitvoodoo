@@ -1,7 +1,8 @@
 package net.falhosh.kotlinbitvoodoo.model
 
 data class ResponseObject (
-    val id: Long,
-    val key: String,
-    val self: String
-        )
+    val key: String?,
+    val url: String?
+        ) {
+    constructor(url: String) : this("ticket url", url)
+}

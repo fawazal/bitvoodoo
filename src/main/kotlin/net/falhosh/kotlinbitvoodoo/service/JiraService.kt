@@ -3,7 +3,6 @@ package net.falhosh.kotlinbitvoodoo.service
 import com.fasterxml.jackson.databind.ObjectMapper
 import net.falhosh.kotlinbitvoodoo.JiraConfig
 import net.falhosh.kotlinbitvoodoo.model.*
-import org.springframework.beans.factory.annotation.Value
 import org.springframework.boot.context.properties.EnableConfigurationProperties
 import org.springframework.http.HttpEntity
 import org.springframework.http.HttpHeaders
@@ -16,7 +15,7 @@ import org.springframework.web.client.RestTemplate
 @EnableConfigurationProperties
 class JiraService (private val jiraConfig: JiraConfig) {
 
-    fun createJiraTicket(summary:String) : String {
+    fun createJiraTicket(summary:String) : ResponseObject {
         val jiraPayload = JiraPayload(Fields(summary = summary, project =  Project(jiraConfig.projectKey), description = "",
             IssueType("10001")
         ))
@@ -28,9 +27,9 @@ class JiraService (private val jiraConfig: JiraConfig) {
         val objectMapper = ObjectMapper()
 
         val request = HttpEntity(objectMapper.writeValueAsString(jiraPayload),headers)
-        val res = RestTemplate().postForEntity(jiraConfig.baseUrl+jiraConfig.ticketUrl,request,ResponseObject::class.java).body
+        val res = RestTemplate().postForObject(jiraConfig.baseUrl+jiraConfig.ticketUrl,request,ResponseObject::class.java)
 
-        return jiraConfig.baseUrl+"/browse/"+ res!!.key
+        return ResponseObject(url = jiraConfig.baseUrl+"/browse/"+ res!!.key)
     }
 
 
