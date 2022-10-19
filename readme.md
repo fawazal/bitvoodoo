@@ -26,7 +26,7 @@ a Response Object is chosen as the return type and not simply an url string as i
 and it is worth noticing that a simillar approach could have been done for the request param; it could have been replaced with a Request Object.
 
 
-##JiraService.kt
+## JiraService.kt
 
 A service class that is annotated with @Service that implements the logic of a client that consumes the open REST Api of Jira.
 it has the JiraConfig class, which read the needed configurations from the application.yml file, injected in it in the constructor. 
