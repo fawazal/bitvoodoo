@@ -15,7 +15,7 @@ import org.springframework.web.client.RestTemplate
 @EnableConfigurationProperties
 class JiraService (private val jiraConfig: JiraConfig) {
 
-    fun createJiraTicket(summary:String) : ResponseObject {
+    fun createJiraTicket(summary:String) : ServiceResponseObject {
         val jiraPayload = JiraPayload(Fields(summary = summary, project =  Project(jiraConfig.projectKey), description = "",
             IssueType("10001")
         ))
@@ -27,9 +27,9 @@ class JiraService (private val jiraConfig: JiraConfig) {
         val objectMapper = ObjectMapper()
 
         val request = HttpEntity(objectMapper.writeValueAsString(jiraPayload),headers)
-        val res = RestTemplate().postForObject(jiraConfig.baseUrl+jiraConfig.ticketUrl,request,ResponseObject::class.java)
+        val res = RestTemplate().postForObject(jiraConfig.baseUrl+jiraConfig.ticketUrl,request,JiraResponseObject::class.java)
 
-        return ResponseObject(url = jiraConfig.baseUrl+"/browse/"+ res!!.key)
+        return ServiceResponseObject(url = jiraConfig.baseUrl+"/browse/"+ res!!.key)
     }
 
 

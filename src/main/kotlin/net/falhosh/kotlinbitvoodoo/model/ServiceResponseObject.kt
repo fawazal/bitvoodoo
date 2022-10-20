@@ -1,6 +1,6 @@
 package net.falhosh.kotlinbitvoodoo.model
 
-data class ResponseObject (
+data class ServiceResponseObject (
     val key: String?,
     val url: String?
         ) {
